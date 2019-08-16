@@ -41,7 +41,7 @@ object Implicits {
   }
   trait LowPriRepeater{
     implicit def GenericRepeaterImplicit[T]: GenericRepeater[T] = GenericRepeater[T]()
-    case class GenericRepeater[T]() extends Repeater[T, Seq[T]]{
+    case class GenericRepeater[T]() extends Repeater[T, collection.Seq[T]]{
       type Acc = mutable.Buffer[T]
       def initial = mutable.Buffer.empty[T]
       def accumulate(t: T, acc: mutable.Buffer[T]) = acc += t

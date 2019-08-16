@@ -22,16 +22,16 @@ def macroDependencies(version: String) =
 val shared = Seq(
   libraryDependencies ++= macroDependencies(scalaVersion.value),
   libraryDependencies ++= Seq(
-    "com.lihaoyi" %%% "utest" % "0.5.4" % "test",
-    "com.lihaoyi" %%% "sourcecode" % "0.1.4"
+    "com.lihaoyi" %%% "utest" % "0.7.0" % "test",
+    "com.lihaoyi" %%% "sourcecode" % "0.1.7"
   ),
   scalaJSStage in Global := FullOptStage,
   organization := "com.lihaoyi",
   version := Constants.version,
   scalaVersion := Constants.scala212,
   crossScalaVersions := Seq(Constants.scala210, Constants.scala211, Constants.scala212),
-  libraryDependencies += "com.lihaoyi" %% "acyclic" % "0.1.5" % "provided",
-  addCompilerPlugin("com.lihaoyi" %% "acyclic" % "0.1.5"),
+  libraryDependencies += "com.lihaoyi" %% "acyclic" % "0.2.0" % "provided",
+  addCompilerPlugin("com.lihaoyi" %% "acyclic" % "0.2.0"),
   autoCompilerPlugins := true,
   testFrameworks += new TestFramework("utest.runner.Framework"),
   publishTo := Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
@@ -247,7 +247,6 @@ lazy val readme = scalatex.ScalatexReadme(
   (unmanagedSources in Compile) += baseDirectory.value/".."/"project"/"Constants.scala",
   noPublish
 )
-
 
 lazy val dottySettings = List(
   libraryDependencies := libraryDependencies.value.map(_.withDottyCompat(scalaVersion.value)),
