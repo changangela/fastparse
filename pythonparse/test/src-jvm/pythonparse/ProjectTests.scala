@@ -36,9 +36,9 @@ object ProjectTests extends TestSuite{
     def listFiles(s: java.io.File): Iterator[String] = {
       val (dirs, files) = Option(s.listFiles()).toIterator
         .flatMap(_.toIterator)
-        .partition(_.isDirectory)
+        .partition(_.nn.isDirectory)
 
-      files.map(_.getPath) ++ dirs.flatMap(listFiles)
+      files.map(_.nn.getPath) ++ dirs.map(_.nn).flatMap(listFiles)
     }
 
     val pythonFiles: Seq[String] = listFiles(new java.io.File(path.toString))

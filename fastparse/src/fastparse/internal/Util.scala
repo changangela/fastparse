@@ -50,15 +50,15 @@ object Util {
     var i = 0
     var col = 1
     var cr = false
-    var prev: Character = null
+    var prev: Character|Null = null
     while (i < data.length){
       val char = data(i)
       if (char == '\r') {
-        if (prev != '\n' && col == 1) lineStarts.append(i)
+        if (prev != null && prev.nn != '\n' && col == 1) lineStarts.append(i)
         col = 1
         cr = true
       }else if (char == '\n') {
-        if (prev != '\r' && col == 1) lineStarts.append(i)
+        if (prev != null && prev.nn != '\r' && col == 1) lineStarts.append(i)
         col = 1
         cr = false
       }else{

@@ -13,7 +13,7 @@ object ScalacParser{
   while(current != null){
     current match{
       case t: java.net.URLClassLoader =>
-        files.appendAll(t.getURLs.map(u => new java.io.File(u.toURI)))
+        files.appendAll(t.getURLs.map(u => new java.io.File(u.nn.toURI)))
       case _ =>
     }
     current = current.getParent
