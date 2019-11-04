@@ -20,7 +20,7 @@ object Parsed{
   def fromParsingRun[T](p: ParsingRun[T]): Parsed[T] = {
     if (p.isSuccess) Parsed.Success(p.successValue.asInstanceOf[T], p.index)
     else Parsed.Failure(
-      Option(p.lastFailureMsg).fold("")(_.render),
+      Option(p.lastFailureMsg).fold("")(_.nn.render),
       p.index,
       Parsed.Extra(p.input, p.startIndex, p.index, p.originalParser, p.failureStack)
     )
@@ -148,7 +148,7 @@ object Parsed{
 //      println("failureGroupAggregate " + Util.parenthize(p.failureGroupAggregate))
       TracedFailure(
         p.failureTerminalAggregate,
-        p.lastFailureMsg ::: p.failureGroupAggregate,
+        p.lastFailureMsg.nn ::: p.failureGroupAggregate,
         Parsed.fromParsingRun(p).asInstanceOf[Failure]
       )
     }
@@ -220,4 +220,3 @@ object Parsed{
     def longAggregateMsg = Failure.formatMsg(input, stack ++ Seq(groupAggregateString -> index), index)
   }
 }
-

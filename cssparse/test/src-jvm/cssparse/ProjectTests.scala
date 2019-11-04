@@ -10,7 +10,7 @@ object ProjectTests extends TestSuite {
 
   def checkCss()(implicit testPath: utest.framework.TestPath) = {
     val url = "https://github.com/" + testPath.value.last
-    val name = url.split("/").last
+    val name = url.split("/").last.nn
 
     println(Paths.get("target", "files", name))
     if (!Files.exists(Paths.get("out", "repos", name))){

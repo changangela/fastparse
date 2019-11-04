@@ -19,7 +19,7 @@ object ProjectTests extends TestSuite{
     def checkDir(path: String, filter: String => Boolean = _ => true) = {
       println("Checking Dir " + path)
       def listFiles(s: File): Seq[String] = {
-        val (dirs, files) = Option(s.listFiles).getOrElse(Array[File]()).partition(_.isDirectory)
+        val (dirs, files) = Option(s.listFiles.map(_.nn)).getOrElse(Array[File]()).partition(_.isDirectory)
 
         files.map(_.getPath) ++ dirs.flatMap(listFiles)
       }

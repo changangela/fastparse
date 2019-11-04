@@ -38,15 +38,15 @@ object TestUtil {
       val source = new InputSource(new StringReader(css))
       val parser = new CSSOMParser(new SACParserCSS3())
       parser.setErrorHandler(new ErrorHandler{
-        def error(ex: CSSParseException) = {
+        def error(ex: CSSParseException | Null) = {
           errors += ex.toString
-          println("ERROR " + ex + " Line: " + ex.getLineNumber + " Column:" + ex.getColumnNumber)
+          println("ERROR " + ex + " Line: " + ex.nn.getLineNumber + " Column:" + ex.nn.getColumnNumber)
         }
-        def fatalError(ex: CSSParseException) = {
+        def fatalError(ex: CSSParseException | Null) = {
           errors += ex.toString
           println("FATAL ERROR " + ex)
         }
-        def warning(ex: CSSParseException) = println("WARNING " + ex)
+        def warning(ex: CSSParseException | Null) = println("WARNING " + ex)
       })
       val sheet = parser.parseStyleSheet(source, null, null)
       errors.toSeq
